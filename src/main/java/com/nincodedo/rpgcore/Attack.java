@@ -6,4 +6,6 @@ import lombok.Data;
 public class Attack {
     private String name;
     private int power;
+    private boolean isPhysicalAttack;
+    private int accuracy;
 }

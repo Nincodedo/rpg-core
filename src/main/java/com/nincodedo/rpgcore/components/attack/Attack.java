@@ -1,4 +1,4 @@
-package com.nincodedo.rpgcore;
+package com.nincodedo.rpgcore.components.attack;
 
 import lombok.Data;
 

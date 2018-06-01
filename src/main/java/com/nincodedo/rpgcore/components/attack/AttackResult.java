@@ -1,12 +1,12 @@
-package com.nincodedo.rpgcore;
+package com.nincodedo.rpgcore.components.attack;
 
-import com.nincodedo.rpgcore.character.BattleCharacter;
+import com.nincodedo.rpgcore.components.character.BattleCharacter;
 import lombok.Data;
 
 @Data
 public class AttackResult {
     private int damage;
-    private String action;
+    private AttackAction action;
     private BattleCharacter source;
     private Attack attack;
     private BattleCharacter target;

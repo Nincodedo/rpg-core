@@ -1,7 +1,7 @@
 package com.nincodedo.rpgcore.components.character;
 
-import com.nincodedo.rpgcore.Item;
 import com.nincodedo.rpgcore.components.attack.Attack;
+import com.nincodedo.rpgcore.components.item.Item;
 import lombok.Data;
 import lombok.val;
 
@@ -24,7 +24,7 @@ public class BattleCharacter {
     private List<Item> inventory;
     private List<Attack> attackList;
 
-    public BattleCharacter() {
+    BattleCharacter() {
         inventory = new ArrayList<>();
         attackList = new ArrayList<>();
     }

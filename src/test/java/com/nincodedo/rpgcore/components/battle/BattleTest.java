@@ -3,8 +3,7 @@ package com.nincodedo.rpgcore.components.battle;
 import com.nincodedo.rpgcore.components.attack.Attack;
 import com.nincodedo.rpgcore.components.attack.AttackAction;
 import com.nincodedo.rpgcore.components.attack.AttackResult;
-import com.nincodedo.rpgcore.components.character.Enemy;
-import com.nincodedo.rpgcore.components.character.Player;
+import com.nincodedo.rpgcore.components.character.BattleCharacter;
 import lombok.val;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,20 +19,20 @@ public class BattleTest {
     @Test
     public void checkTurnOrder() {
         Battle battle = new Battle();
-        Player player = setupPlayer();
-        Enemy enemy = setupEnemy();
-        player.setSpeed(10);
+        BattleCharacter enemy = setupEnemy();
         enemy.setSpeed(5);
-        battle.addPlayers(player);
-        battle.addEnemies(enemy);
+        BattleCharacter enemy2 = setupEnemy();
+        enemy2.setSpeed(10);
+        enemy2.setName("enemy2");
+        battle.addEnemies(enemy, enemy2);
         val turnOrder = battle.getTurnOrder();
-        Assert.assertTrue(turnOrder.get(0) instanceof Player);
+        Assert.assertTrue(turnOrder.get(0).getName().equals("enemy2"));
     }
 
     @Test
     public void attacking() {
         Battle battle = new Battle();
-        Player player = setupPlayer();
+        BattleCharacter player = setupPlayer();
         val attack = new Attack();
         attack.setAccuracy(100);
         attack.setName("wow");
@@ -41,17 +40,10 @@ public class BattleTest {
         attack.setPower(5);
         val attackList = Arrays.asList(attack);
         player.setAttackList(attackList);
-        Enemy enemy = setupEnemy();
-        battle.addPlayers(player);
+        BattleCharacter enemy = setupEnemy();
         battle.addEnemies(enemy);
         val enemyHp = enemy.getCurrentHp();
-        val turnOrder = battle.getTurnOrder();
-        Optional<AttackResult> attackResult = Optional.empty();
-        for (val character : turnOrder) {
-            if (character instanceof Player) {
-                attackResult = battle.attack(character, character.getAttackByName("wow"), enemy);
-            }
-        }
+        Optional<AttackResult> attackResult = battle.attack(player, player.getAttackByName("wow"), battle.getEnemies().get(0));
         val newEnemyHp = battle.getEnemies().get(0).getCurrentHp();
         Assert.assertTrue(enemyHp != newEnemyHp);
         if (attackResult.isPresent()) {
@@ -61,8 +53,9 @@ public class BattleTest {
         }
     }
 
-    private Player setupPlayer() {
-        Player player = new Player();
+    private BattleCharacter setupPlayer() {
+        BattleCharacter player = new BattleCharacter();
+        player.setName("player");
         player.setHp(random.nextInt(10));
         player.setCurrentHp(player.getHp());
         player.setAttack(random.nextInt(10));
@@ -74,8 +67,9 @@ public class BattleTest {
         return player;
     }
 
-    private Enemy setupEnemy() {
-        Enemy enemy = new Enemy();
+    private BattleCharacter setupEnemy() {
+        BattleCharacter enemy = new BattleCharacter();
+        enemy.setName("enemy");
         enemy.setHp(random.nextInt(10));
         enemy.setCurrentHp(enemy.getHp());
         enemy.setAttack(random.nextInt(10));

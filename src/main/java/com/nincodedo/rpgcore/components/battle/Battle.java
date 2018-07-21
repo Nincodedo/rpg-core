@@ -4,39 +4,44 @@ import com.nincodedo.rpgcore.components.attack.Attack;
 import com.nincodedo.rpgcore.components.attack.AttackAction;
 import com.nincodedo.rpgcore.components.attack.AttackResult;
 import com.nincodedo.rpgcore.components.character.BattleCharacter;
-import com.nincodedo.rpgcore.components.character.Enemy;
-import com.nincodedo.rpgcore.components.character.Player;
 import lombok.Data;
 import lombok.val;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.*;
 import java.util.*;
 
 @Data
-class Battle {
-    private List<Enemy> enemies;
-    private List<Player> players;
-    private int currentCharacterTurnId;
+@Entity
+@Table(name = "Battle")
+public class Battle {
+    @Id
+    @GeneratedValue
+    @Column(name = "Id", nullable = false)
     private int id;
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<BattleCharacter> enemies;
+    @Column(name = "CurrentTurnId")
+    private int currentCharacterTurnId;
+    @Column(name = "InstanceId")
+    private String instanceId;
+
 
     public Battle() {
         enemies = new ArrayList<>();
-        players = new ArrayList<>();
     }
 
     List<BattleCharacter> getTurnOrder() {
         List<BattleCharacter> turnOrderList = new ArrayList<>();
         turnOrderList.addAll(enemies);
-        turnOrderList.addAll(players);
         turnOrderList.sort(Comparator.comparingInt(BattleCharacter::getSpeed));
         Collections.reverse(turnOrderList);
         return turnOrderList;
     }
 
-    void addPlayers(Player... player) {
-        players.addAll(Arrays.asList(player));
-    }
-
-    void addEnemies(Enemy... enemy) {
+    public void addEnemies(BattleCharacter... enemy) {
         enemies.addAll(Arrays.asList(enemy));
     }
 

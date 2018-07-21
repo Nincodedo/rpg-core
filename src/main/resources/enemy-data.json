@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Slime",
+    "statFocus": [
+      "attack"
+    ],
+    "classType": "Attack",
+    "rating": 1
+  },
+  {
+    "name": "Skeleton",
+    "statFocus": [
+      "attack",
+      "defense"
+    ],
+    "classType": "Attack",
+    "rating": 2
+  }
+]

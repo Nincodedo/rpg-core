@@ -7,6 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Maven Build
-      uses: LucaFeger/action-maven-cli@765e218a50f02a12a7596dc9e7321fc385888a27
+      uses: LucaFeger/action-maven-cli@1.1.0
       with:
         args: clean package

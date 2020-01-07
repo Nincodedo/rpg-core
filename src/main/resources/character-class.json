@@ -1,0 +1,29 @@
+[
+  {
+    "name": "wizard",
+    "focus": [
+      "magicattack"
+    ]
+  },
+  {
+    "name": "paladin",
+    "focus": [
+      "magicdefense"
+    ]
+  },
+  {
+    "name": "cleric"
+  },
+  {
+    "name": "rogue",
+    "focus": [
+      "speed"
+    ]
+  },
+  {
+    "name": "man_health_worker"
+  },
+  {
+    "name": "assassin"
+  }
+]

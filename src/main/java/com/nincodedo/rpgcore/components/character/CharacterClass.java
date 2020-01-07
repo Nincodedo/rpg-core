@@ -5,9 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class EnemyDataTemplate {
+public class CharacterClass {
     private String name;
-    private List<StatFocus> statFocus;
-    private String classType;
-    private int rating;
+    private List<String> focus;
 }

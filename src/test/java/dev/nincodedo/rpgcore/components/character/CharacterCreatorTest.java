@@ -1,6 +1,6 @@
-package com.nincodedo.rpgcore.components.character;
+package dev.nincodedo.rpgcore.components.character;
 
-import com.nincodedo.rpgcore.components.GameManager;
+import dev.nincodedo.rpgcore.components.GameManager;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

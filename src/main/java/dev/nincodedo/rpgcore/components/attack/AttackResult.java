@@ -1,6 +1,6 @@
-package com.nincodedo.rpgcore.components.attack;
+package dev.nincodedo.rpgcore.components.attack;
 
-import com.nincodedo.rpgcore.components.character.BattleCharacter;
+import dev.nincodedo.rpgcore.components.character.BattleCharacter;
 import lombok.Data;
 
 @Data

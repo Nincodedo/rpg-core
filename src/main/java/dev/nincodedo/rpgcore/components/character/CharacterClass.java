@@ -1,4 +1,4 @@
-package com.nincodedo.rpgcore.components.character;
+package dev.nincodedo.rpgcore.components.character;
 
 import lombok.Data;
 

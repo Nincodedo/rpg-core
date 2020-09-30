@@ -1,6 +1,6 @@
 package com.nincodedo.rpgcore;
 
-import com.nincodedo.rpgcore.components.GameManager;
+import dev.nincodedo.rpgcore.components.GameManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 

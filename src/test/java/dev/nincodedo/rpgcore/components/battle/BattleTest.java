@@ -1,7 +1,7 @@
-package com.nincodedo.rpgcore.components.battle;
+package dev.nincodedo.rpgcore.components.battle;
 
-import com.nincodedo.rpgcore.components.attack.AttackResult;
-import com.nincodedo.rpgcore.components.character.BattleCharacter;
+import dev.nincodedo.rpgcore.components.attack.AttackResult;
+import dev.nincodedo.rpgcore.components.character.BattleCharacter;
 import lombok.val;
 import org.junit.Assert;
 import org.junit.Test;

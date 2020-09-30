@@ -1,15 +1,14 @@
-package com.nincodedo.rpgcore.components;
+package dev.nincodedo.rpgcore.components;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nincodedo.rpgcore.components.character.CharacterClass;
-import com.nincodedo.rpgcore.components.character.Enemy;
-import com.nincodedo.rpgcore.components.item.Item;
+import dev.nincodedo.rpgcore.components.character.CharacterClass;
+import dev.nincodedo.rpgcore.components.character.Enemy;
+import dev.nincodedo.rpgcore.components.item.Item;
 import lombok.Data;
 import lombok.Getter;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,5 +47,16 @@ public class GameManager {
         itemList.clear();
         enemyList.clear();
         characterClassMap.clear();
+    }
+
+    private static String readFromInputStream(InputStream inputStream) throws IOException {
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                resultStringBuilder.append(line).append("\n");
+            }
+        }
+        return resultStringBuilder.toString();
     }
 }

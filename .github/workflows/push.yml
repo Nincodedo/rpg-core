@@ -1,12 +1,18 @@
-on: push
-name: Push
+on:
+  push:
+    branches:
+      - master
+name: Master Build
 jobs:
-  mavenBuild:
-    name: Maven Build
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Maven Build
-      uses: LucaFeger/action-maven-cli@1.1.0
-      with:
-        args: clean package
+      - uses: actions/checkout@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '15'
+      - name: Update permissions on mvnw
+        run: chmod 700 mvnw
+      - name: Build, Test
+        run: ./mvnw clean verify --no-transfer-progress
